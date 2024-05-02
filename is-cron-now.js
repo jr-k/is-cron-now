@@ -27,7 +27,6 @@ const cron = (() => {
 
         for (let val of values) {
             try {
-                console.log(target);
                 if (toInt(val, allowDaynames) === target) {
                     return true;
                 }
@@ -75,7 +74,7 @@ const cron = (() => {
         }
 
         while (since <= dt) {
-            if (isCronActive(s, since)) {
+            if (isActive(s, since)) {
                 return true;
             }
             since = new Date(since.getTime() + 60000);

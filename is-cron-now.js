@@ -83,7 +83,7 @@ function hasBeen(s, since, dt = new Date()) {
     return false;
 }
 
-function isCronNow(s, dt = new Date()) {
+function isCronActive(s, dt = new Date()) {
     let [minute, hour, dom, month, dow, year] = s.split(' ');
     let weekday = dt.getDay();
 

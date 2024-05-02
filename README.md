@@ -46,8 +46,6 @@ this package supports the following cron formats.
 ## Example
 
 ```javascript
-const {isActive} = require('is-cron-now')
-
 isActive('* 1 */4 11 * 2016-2019', new Date(2018, 11, 16, 1, 0)) // -> true
 
 isActive('24 3 17 11 * 1995', new Date(1995, 11, 17, 3, 24)) // -> true

@@ -65,18 +65,6 @@ function parseArg(value, target, allowDaynames = false) {
     return false;
 }
 
-function isNow(s, dt = new Date()) {
-    let [minute, hour, dom, month, dow, year] = s.split(' ');
-    let weekday = dt.getDay();
-
-    return parseArg(minute, dt.getMinutes()) &&
-           parseArg(hour, dt.getHours()) &&
-           parseArg(dom, dt.getDate()) &&
-           parseArg(month, dt.getMonth() + 1) &&
-           parseArg(dow, weekday === 0 ? 6 : weekday - 1, true) &&
-           (!year || (year && parseArg(year, dt.getFullYear())));
-}
-
 function hasBeen(s, since, dt = new Date()) {
     since = new Date(since);
     dt = new Date(dt);
@@ -93,4 +81,16 @@ function hasBeen(s, since, dt = new Date()) {
     }
 
     return false;
+}
+
+function isCronNow(s, dt = new Date()) {
+    let [minute, hour, dom, month, dow, year] = s.split(' ');
+    let weekday = dt.getDay();
+
+    return parseArg(minute, dt.getMinutes()) &&
+           parseArg(hour, dt.getHours()) &&
+           parseArg(dom, dt.getDate()) &&
+           parseArg(month, dt.getMonth() + 1) &&
+           parseArg(dow, weekday === 0 ? 6 : weekday - 1, true) &&
+           (!year || (year && parseArg(year, dt.getFullYear())));
 }

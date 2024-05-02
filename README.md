@@ -1,5 +1,5 @@
 # is-cron-now
-Checks if cron string is right now
+Checks if cron string is active right now or active with custom date
 
 ## cron support
 This is a javascript cron parser so day of the week is 0 - 6 (1 is monday) and month of the year is 0 -11
@@ -46,29 +46,33 @@ this package supports the following cron formats.
 ## Example
 
 ```javascript
-isCronNow('* 1 */4 11 * 2016-2019')
+const {isActive} = require('is-cron-now')
 
-isCronNow('24 3 17 11 * 1995')
+isActive('* 1 */4 11 * 2016-2019', new Date(2018, 11, 16, 1, 0)) // -> true
+
+isActive('24 3 17 11 * 1995', new Date(1995, 11, 17, 3, 24)) // -> true
 ```
 
 ## API
 
-## isCronNow
+## isActive
 
-Takes a cron string
+Takes a cron string and optionally a custom date.
 
 ### Syntax
 
 ```javascript
-  isCronNow('* * * * * *')
+  isActive('* * * * * *')
 
-  isCronNow('* * * * * 2019')
+  isActive('* * * * * 2019', new Date(2019))
 ```
 
 ### Parameters
 
 * string
   * cron formated string
+* Date?: optionall
+  * javascript date
 
 ### Return value
-boolean: cron is now or not
+boolean: cron is active or not
